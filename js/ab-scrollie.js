@@ -4,6 +4,10 @@
 
     var SCROLLIE = [];
     var COUNT = 0;
+    var t_visible       = 'abOnItemVisible';
+    var t_action_start  = 'abOnItemActionStart';
+    var t_item_disabled = 'abOnItemDisabled';
+    var t_item_destruct = 'abOnItemDestruct';
 
     $.fn.Scrollie = function(UserParams) {
         var Self = this;
@@ -11,10 +15,6 @@
         var Params = {
             mark_css: '.ab-scrollie',
             mark_class: 'ab-scrollie',
-            t_visible: 'abOnItemVisible',
-            t_action_start: 'abOnItemActionStart',
-            t_item_disabled: 'abOnItemDisabled',
-            t_item_destruct: 'abOnItemDestruct',
             d_id: 'scrollie_id',
             static: true, // Может ли позиция элемента измениться
             oneoff: true, // Отработать один раз
@@ -71,6 +71,7 @@
             function unScrollie() {
                 unMarkItem();
                 deleteItem(self.data(Params.d_id));
+                self.trigger(t_item_destruct);
             }
             // ------------------------
             function addNewItem() {
@@ -116,10 +117,13 @@
 
                 if (!isVisible.call(this) || this.disabled === true) return;
 
+                this.self.trigger(t_visible);
                 startItemAction.call(this);
 
-                if (this.oneoff === true)
+                if (this.oneoff === true) {
                     this.disabled = true;
+                    this.self.trigger(t_item_disabled);
+                }
             });
         }
         // ------------------------
@@ -146,6 +150,7 @@
             var self = this;
 
             setTimeout(function() {
+                self.self.trigger(t_action_start);
                 self.action(self.self);
             }, self.pause);
         }
