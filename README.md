@@ -53,19 +53,3 @@ $('.container').Scrollie({
     </ul>
   </li>
 </ul>
-<b>TODO:</b> <br>
-<ul>
-  <li>
-    Протестировать в различных браузерах и устройствах
-    <ul>
-      <li>IE</li>
-      <li>Safari</li>
-      <li>Opera</li>
-      <li>Chrome</li>
-      <li>Firefox</li>
-      <li>..</li>
-    </ul>
-  </li>
-  <li>Написать инструкцию</li>
-  <li>Сделать страницу презентацию</li>
-</ul>
