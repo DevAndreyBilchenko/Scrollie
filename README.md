@@ -10,7 +10,7 @@
 <ul>
   <li>
     Инициализация
-    <pre>
+    <pre> javascript
 $('.container').Scrollie({
     action: function(Self) {
         // Code..
